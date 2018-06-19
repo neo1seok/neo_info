@@ -1,0 +1,2 @@
+sudo apt-get install libusb-1.0-0-dev libpcsclite-dev pcscd pcsc-tools
+pip install pyscard
