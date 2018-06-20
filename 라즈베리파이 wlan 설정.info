@@ -1,0 +1,27 @@
+>iwconfig
+--> 디바이스명 확인
+>sudo iwlist wlan0 scan
+-> wifi 리스트를 스캔한다.
+
+>sudo iwlist wlan0 scan |grep ESSID
+->ssid 만 확인
+
+/etc/wpa_supplicant/wpa_supplicant.conf
+-->실제 wifi 접속 정보
+
+
+>wpa_passphrase  접속할_무선_네트워크의_SSID  접속할_무선_네트워크의_암호
+network={
+        ssid="test_ssid"
+        #psk="test1234"
+        psk=745eefbb097704e4d8008e5a6a2a3babad85094f164a274393187c0b31966161
+}
+
+-> 암호를 hash형태로 변경하는 문자열로 출력함
+
+
+>sudo vi /etc/wpa_supplicant/wpa_supplicant.conf
+->아까 나왔던 문자열을 여기다 복사해줌.
+
+>sudo reboot
+->단말기를 리붓
