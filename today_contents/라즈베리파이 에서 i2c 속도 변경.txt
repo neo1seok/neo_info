@@ -1,0 +1,10 @@
+
+*TITLE:
+라즈베리파이 에서 i2c 속도 변경
+
+*ISSUE:
+
+
+*SOLUTION:
+/etc/modprobe.d
+밑에 i2c.conf에서 변경 함

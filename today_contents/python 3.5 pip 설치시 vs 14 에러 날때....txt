@@ -1,0 +1,14 @@
+
+*TITLE:
+python 3.5 pip 설치시 vs 14 에러 날때...
+
+*ISSUE:
+python 3.5 의 setup.py 나 pip  install 을 할때.
+Microsoft Visual C++ 14.0 is required 에러가 날때가 있다.
+그런데 이 모듈이 깔려 있음에도 불구하고 에러가 날때가 있다.
+
+*SOLUTION:
+pip install --upgrade setuptools
+을 해준다. 
+즉, 셋업 모듈이 옛날 거라거 그런거다. 
+죈장..

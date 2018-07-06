@@ -1,0 +1,19 @@
+
+*TITLE:
+SimpleHTTPRequestHandler 의 pythonw 실행에서 동작 안하는 문제
+
+*ISSUE:
+python 3.5 에서 
+SimpleHTTPRequestHandler 를 테스트 하기 위해 
+socketserver.TCPServer 를 적용해 테스트 해보았는데,
+python 으로 실행 시킬때는 정상적으로 동작 했으나. 
+pythonw 로 할때는 정상적인 동작을 하지 않았다. 
+이유는 아직 모르겠다. 
+
+
+*SOLUTION:
+BaseHTTPRequestHandler 의 log_message에  sys.stderr.write 라고 그냥 콘솔에 뿌려주는 
+부분이 있는데 pythonw는 콘솔 없이 띄우는거라.
+이부분에 write라는 부분이 없었던것 같다 그래서 에러가 난것 같다.
+log_message 함수를 재정의 해서 윗부분을 빼주니까 해결되었다.
+

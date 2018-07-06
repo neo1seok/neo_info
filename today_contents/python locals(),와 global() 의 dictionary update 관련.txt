@@ -1,0 +1,18 @@
+
+*TITLE:
+python locals(),와 global() 의 dictionary update 관련
+
+*ISSUE:
+test =23
+locals()["test"]=2
+와 같은 경우로 값을 설정하고 싶은 경우가 있다. 
+하지만 이런 경우 에러가 발생한다.
+
+*SOLUTION:
+locals()은 값을 가져 올때 사용하는 함수이다.
+특히 값이 어떻게 어떻게 변경되었다고 하더라도.
+locals()을 호출 하는 순간,
+전에 호출했던 test =23 이 다시 세팅된다. 
+그러니 주의 해야 한다.
+특히 exec()를 할 경우 주의 해야 한다. 
+이 내부에서 변경된 값은 locals() 의 값에 반영되지 않는다.

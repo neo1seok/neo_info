@@ -1,0 +1,9 @@
+
+*TITLE:
+텐서플로우 관련 읽어볼 url
+
+*ISSUE:
+
+
+*SOLUTION:
+https://tensorflow.blog/%ED%95%B4%EC%BB%A4%EC%97%90%EA%B2%8C-%EC%A0%84%ED%95%B4%EB%93%A4%EC%9D%80-%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-1/

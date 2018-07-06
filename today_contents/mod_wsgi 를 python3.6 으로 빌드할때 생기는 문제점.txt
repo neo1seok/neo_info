@@ -1,0 +1,13 @@
+
+*TITLE:
+mod_wsgi 를 python3.6 으로 빌드할때 생기는 문제점
+
+*ISSUE:
+mod_wsgi 를 python3.6로 빌드할때 
+libpython3.6m.a: error adding symbols: Bad value 라며 에러가 발생 한다.
+
+*SOLUTION:
+python3.6을 빌드 할때...
+./configure --enable-shared 를 하고 빌드후 다시 설치를 다시해야 한다.
+설치후 ldconfig를 꼭하지 않으면 
+python3.6에서 라이브러리를 못찾는다.

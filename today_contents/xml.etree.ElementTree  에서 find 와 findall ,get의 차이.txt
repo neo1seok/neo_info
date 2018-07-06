@@ -1,0 +1,11 @@
+
+*TITLE:
+xml.etree.ElementTree  에서 find 와 findall ,get의 차이
+
+*ISSUE:
+xml.etree.ElementTree 에서  find 와 findall ,get의  차이로 혼동이 오는 경우가 있다.
+
+*SOLUTION:
+find와 findall은 현재 Node의 바로 아래 child에서 해당 tag 이름을 가지고 찾는것인데, 
+find는 첫번째 하나를 찾는 것이고, findall은 전체를 리스트로 찾는 것이다.
+get 은 각 엘레멘트의 어트리뷰트를 얻는 것이다.

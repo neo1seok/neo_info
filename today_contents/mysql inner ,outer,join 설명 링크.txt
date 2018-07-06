@@ -1,0 +1,9 @@
+
+*TITLE:
+mysql inner ,outer,join 설명 링크
+
+*ISSUE:
+http://rapapa.net/?p=311
+
+*SOLUTION:
+

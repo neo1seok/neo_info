@@ -1,0 +1,17 @@
+
+*TITLE:
+ironpython clr.AddReferenceToFile 의 path 문제
+
+*ISSUE:
+clr.AddReferenceToFile 의 path 관련해서 해깔일 경우가 많다.
+
+*SOLUTION:
+clr.AddReferenceToFile 시 sys.path 에 해당 DLL이 있어야 한다.
+그런데 몇가지 유의해야 할점은 
+그 DLL하나만 설정할때는 
+".../폴더/폴더/" 의 형태로 해도 별문제 없이 돌아간다.
+하지만 DLL에 종속되어 있는 DLL이 있을 경우 
+".../폴더/폴더" 의 형태가 되어야 한다.
+
+아마 아이언파이썬 로딩 메카니즘의 불일치가 있지 않나 싶다.
+이런 부분은 디테일 한거라  해보지 않으면 어렵다.

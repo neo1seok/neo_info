@@ -1,0 +1,39 @@
+
+*TITLE:
+python 에서 ctype 이용할때 함수포인터 호출 억세스 에러 문제
+
+*ISSUE:
+c++ dll 에서 test1함수는 함수 포인터를 받아서 전역변수에 저장하고 
+test2는 함수 포인터를 실행하는 함수를 만든다.
+python 에서 test1함수에 
+
+def my_callback(param):
+	print("my_callback")
+	print(param)
+	return 0
+
+PFTEST = WINFUNCTYPE(c_int32, c_int32)
+test1(PFTEST(my_callback),c_int(23))
+test2(c_int(14444)) 를 호출하면 my_callback 이 실행되어야 하나.
+
+실제로 
+Traceback (most recent call last):
+  File "D:/PROJECT/GIANT_3/SRC/py_giant3/c_api/test_api.py", line 75, in <module>
+    g3api_test2(432324)
+OSError: exception: access violation writing 0x000698C4
+
+이 나온다.
+
+*SOLUTION:
+test1(PFTEST(my_callback),c_int(23)) 을 다음과 같이 바꾸면 해결된다.
+callback = PFTEST(my_callback)
+test1(callback ,c_int(23))
+아마 전자는 test1 이 호출 되고 나서 파라메터에 생성된 
+메모리를 지우는것 같다.
+그래서 test2 할때는 정작 내부 가지고 있는 포인터 주소가 없다고 나으는것 으로 예상된다. 
+
+하지만 callback = PFTEST(my_callback) 를 해주면 
+해당 스크립트가 끝날때 까지 메모리를 유지 하므로 
+정상적으로 동작 한다.
+ 하 이것때문에 며칠 고생 했는데 
+어쨌든 해결되었다.

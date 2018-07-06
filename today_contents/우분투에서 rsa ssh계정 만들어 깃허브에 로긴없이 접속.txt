@@ -1,0 +1,10 @@
+
+*TITLE:
+우분투에서 rsa ssh계정 만들어 깃허브에 로긴없이 접속
+
+*ISSUE:
+ssh-keygen -t rsa
+id_rsa.pub 파일 내용을 깃허브>설정>ssh 에 새로운 키 누르고 입력해야함
+
+*SOLUTION:
+

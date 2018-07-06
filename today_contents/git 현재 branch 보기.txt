@@ -1,0 +1,9 @@
+
+*TITLE:
+git 현재 branch 보기
+
+*ISSUE:
+
+
+*SOLUTION:
+git rev-parse --abbrev-ref HEAD

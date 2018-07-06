@@ -1,0 +1,15 @@
+
+*TITLE:
+리눅스에서 gdb 를 통해 segment fault 부분 찾아내기...
+
+*ISSUE:
+
+
+*SOLUTION:
+컴파일을 할때 -g --ggdb 를 넣고 (-ggdb는 사실 안넣어도 되는 듯하다.) 빌드 한다. 
+그리고 실행할때..
+>gdb ./test
+>r [(test의 아규먼트)]
+를 실행하면 segment fault난 부분을 볼 수 있다.
+
+

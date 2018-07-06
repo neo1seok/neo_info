@@ -1,0 +1,9 @@
+
+*TITLE:
+리눅스에서 일괄 이름 변경
+
+*ISSUE:
+
+
+*SOLUTION:
+ rename 's/sn_info/sn_info_withoutindex/' sn_info.*

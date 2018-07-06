@@ -1,0 +1,22 @@
+
+*TITLE:
+리눅스 usb 드라이버  권한 설정 하는 방법
+
+*ISSUE:
+
+
+*SOLUTION:
+>lsusb 
+Bus 001 Device 010: ID 0403:601c Future Technology Devices International, Ltd
+와 같이 나오는데...
+id 뒤의 값이 vid와 pid 이다.
+/etc/udev/rules.d/ 밑에 
+[숫자]-[이름].rules 을 만들고 다음과 같이 넣는다. 
+
+sudo vi /etc/udev/rules.d/50-ft422.rules
+
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="601c", GROUP="users", MODE="0666"
+
+이렇게 저장을 하고 usb를 뺐다 꼽으면...
+적용되어 있다. 
+

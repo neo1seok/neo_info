@@ -1,0 +1,37 @@
+
+*TITLE:
+python 3.6 수동 설치시 pip 동작 안해는 현상.
+
+*ISSUE:
+python 3.6을 소스로 받아 설치를 하고,
+pip3을 실행하면 (물론 3.6 설치된 기반으로 동작하는...)
+ssl tls가 실행 안된다고 나온다. 
+이런경우 python3.6 으로 실행시켜 들어가.
+import ssl 을 치면...
+모듈이 없다는 에러가 나온다.
+
+*SOLUTION:
+python3.6 기본 설치시 ssl 모듈이 설치 되지 않는다.
+설치 되게 하려면 
+Setup.dist 안에 들어가서..
+_socket socketmodule.c
+
+SSL=/usr/local/ssl
+_ssl _ssl.c 
+        -DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl 
+        -L$(SSL)/lib -lssl -lcrypto
+
+의 커멘트를 제거하고 저장해야 하는데...
+SSL=/usr/local/ssl 이 실제 ssl 라이브러리가 설치 되어 있어야 하는 곳이다.
+만약 이부분에 libssl.so파일이나 libcrypto.so 파일이 없거나 헤더와 다르면
+빌드시 에러가 나므로 반드시 맞춰 주거나. 
+
+openssl을 받아서 다시 설치해야 한다.
+
+아무튼 이렇게 한후 주의해야 할점은 Module/Setup 파일을 반드시 제거해줘야 한다. 
+이 파일이 있으면 Setup.dist -> Setup 으로 카피가 안되므로..
+제거하고..
+./configure
+./make
+./sudo make install
+을 해줘야 pip3가 정상적으로 동작 한다.

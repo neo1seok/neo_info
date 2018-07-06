@@ -1,0 +1,13 @@
+
+*TITLE:
+pycrypto 인스톨시 'intmax_t'  에러가 날때..
+
+*ISSUE:
+error C2061: syntax error: identifier 'intmax_t'
+
+*SOLUTION:
+cmd에서 
+환경설정 bat 실행..
+한다음 다음을 실행시키고.
+set CL=-FI"%VCINSTALLDIR%INCLUDEstdint.h"
+해본다.

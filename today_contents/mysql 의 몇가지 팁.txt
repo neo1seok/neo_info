@@ -1,0 +1,11 @@
+
+*TITLE:
+mysql 의 몇가지 팁
+
+*ISSUE:
+mysql 의 몇가지 팁에 대해 알아 보았다.
+
+
+*SOLUTION:
+SELECT LAST_INSERT_ID();
+마지막 값을 가져 온다

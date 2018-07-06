@@ -1,0 +1,19 @@
+
+*TITLE:
+64bit 환경에서 gnu와 vc c++의 long 타입 변수의 크기 차이 
+
+*ISSUE:
+64bit 환경에서 리눅스와 윈도우의 long type 의 차이로 인해 
+문제가 생겼다. 
+
+
+*SOLUTION:
+                   |   gnu | vc ++
+---------------------------
+long             |    8     |         4
+long long     |    8     |         8
+long  *         |     8    |          8
+
+
+보통 많은 시스템에서 unsigned long 형에 포인터를 저장해서 보내는 경우가 많은데 
+vc의 경우 에러가 발생 한다. (gnu 에서는 무방)

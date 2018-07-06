@@ -1,0 +1,10 @@
+
+*TITLE:
+LoadLibrary 후 getprocaddrss 에서 Run-Time Check Failure #0 에러가 날때
+
+*ISSUE:
+Run-Time Check Failure #0 - The value of ESP was not properly saved across a function call.  This is usually a result of calling a function declared with one calling convention with a function pointer declared with a different calling convention.
+
+*SOLUTION:
+C/C++ >고급>호출 규칙을
+cdecl 과 stdcall 둘중 하나로 설정한다.
