@@ -1,0 +1,15 @@
+uname -r
+
+dpkg -S vmlinuz
+
+dpkg -l "*4.13.0-45*" |grep ^ii
+
+sudo apt-get purge linux-headers-4.15.0-30 linux-headers-4.15.0-30-generic linux-image-4.15.0-30-generic linux-image-extra-4.15.0-30-generic
+
+sudo dpkg --purge linux-headers-4.15.0-24 linux-headers-4.15.0-24-generic linux-image-4.15.0-24-generic linux-modules-4.15.0-24-generic
+
+sudo apt-get -f install
+sudo apt-get update
+sudo apt-get upgrade
+
+du -sh /boot
