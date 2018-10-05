@@ -1,0 +1,22 @@
+
+<VirtualHost *:80>
+   ServerName basic_sample
+	<Directory /var/www/basic_sample>
+			 <Files py_server.py>
+					Require all granted
+			 </Files>
+	</Directory>
+	WSGIDaemonProcess basic_sample python-path=/home/ictk/project/product_machine/.vr_product/lib/python3.6/site-packages
+	WSGIProcessGroup basic_sample
+	WSGIScriptAlias /basic_sample /var/www/basic_sample/py_server.wsgi process-group=basic_sample
+</VirtualHost>
+
+
+
+*/var/www/basic_sample/py_server.wsgi 의 내용
+import sys
+sys.path.insert(0,'/var/www/basic_sample')
+print(sys.path)
+from route import app as application
+
+
