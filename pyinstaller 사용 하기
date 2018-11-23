@@ -1,0 +1,26 @@
+가능하면 가상환경에서 하는게 좋을것 같다.
+설치)
+>python -m venv [가상환경폴더이름]
+>[가상환경폴더이름]\scripts\activate.bat
+>pip install pyinstaller
+(좀더 확인해봐야 겠지만 pyinstaller를 베이스 파이선 폴더에 있는 놈으로 실행하니 에러가 발생 했다. )
+
+빌드)
+>pyinstaller [설치대상파이썬모듈]\__main__.py -n [실행파일이름] -F --add-data .\[설치할라이브러리패쓰];.
+
+실제 빌드 배치 파일 예)
+
+call .vr_py_giant3\Scripts\activate.bat
+
+SET SERVER_DIR=\\192.168.0.77\project\giant_3\RELEASE\py_giant3_exe
+echo %SERVER_DIR%
+where python 
+pyinstaller py_giant3\__main__.py -n py_giant3 -F --add-data .\py_giant3\lib\win32_x86\LibFT4222.dll;.
+net use \\192.168.0.77\project #ictk1234 /user:ictk
+
+
+copy .\dist\py_giant3.exe %SERVER_DIR%
+
+start %SERVER_DIR%
+
+
