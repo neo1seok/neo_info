@@ -1,0 +1,16 @@
+ *사용자 보기
+ use mysql;
+ select user, host from user;
+ 
+ *사용자 추가
+ create user ictk@'%' identified by '#ictk1234';
+ 
+ *사용자 권한 변경
+  grant all privileges on *.* to ictk@'%' identified by '#ictk1234' with grant option;
+  
+  *접속 쓰레드 수
+  show status like '%Threads_connected%';
+  
+  *최대 쓰레드 
+  show variables like '%max_connection%';
+  
