@@ -1,0 +1,46 @@
+pytho 코드는 다음과 같다. 
+__________________________________________________________
+
+from multiprocessing import Process
+
+
+
+class Struct:
+	def __init__(self, **entries):
+		self.__dict__.update(entries)
+
+	def get_dict(self):
+		return dict(self.__dict__)
+
+	def from_dict(self,dict):
+		self.__dict__.update(dict)
+
+config = Struct(log_path="log",site_name="test_site",is_event_message=0)
+def child():
+	print(config.get_dict())
+
+if __name__ == '__main__':
+	config.test = "23242fsdfsf"
+	print(config.get_dict())
+
+
+	p = Process(target=child)
+	p.start()
+	p.join()
+  
+해당 코드를 윈도우에서 돌렸을때는 
+{'log_path': 'log', 'site_name': 'test_site', 'is_event_message': 0, 'test': '23242fsdfsf'}
+{'log_path': 'log', 'site_name': 'test_site', 'is_event_message': 0}
+
+
+이렇게 나오고 
+리눅스에서 돌렸을 때는 
+{'is_event_message': 0, 'log_path': 'log', 'site_name': 'test_site', 'test': '23242fsdfsf'}
+{'is_event_message': 0, 'log_path': 'log', 'site_name': 'test_site', 'test': '23242fsdfsf'}
+
+이렇게 나온다. 
+즉 리눅스에서는 config 라는 변수가 멀티프로세싱이 되면서 고대로 복사가 되는 반면
+윈도우에서는 되지 않는다.
+
+아마 리눅스에서 fork기능을 사용한데 비해
+윈도우에서는 소프트웨어 적으로 구현해서 그렇지 않나 싶다. 
