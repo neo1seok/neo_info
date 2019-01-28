@@ -24,3 +24,6 @@ copy .\dist\py_giant3.exe %SERVER_DIR%
 start %SERVER_DIR%
 
 
+**콘솔창을 제거 하고 싶으면 -w를 붙여준다.
+pyinstaller dlg_form.py -n copy_form_dlg -F -w
+
