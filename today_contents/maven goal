@@ -1,0 +1,18 @@
+1.goal을 assembly:assembly로 넣어야 maven 빌드가 된다.
+2.maven install은 build가 된 버전을 저장소에 넣는 과정이다.
+
+3. maven pom.xml에서 
+아래 <source> 버전을 바꿔줘야 maven업데이트시 Compliler가 변경이 안된다.
+<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+					<compilerArgument>-Xlint:all</compilerArgument>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
