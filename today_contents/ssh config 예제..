@@ -1,0 +1,17 @@
+$~/.ssh/config
+에 
+Host ictk_git
+ HostName github.com
+ User git
+ PreferredAuthentications publickey
+ IdentityFile ~/.ssh/id_ecdsa
+ IdentitiesOnly yes
+
+로 적고 
+git 사용시 ictk_git를 주소 처럼 사용하면 해당  prv키로 접속이 가능하다.
+확인은 
+ssh git@ictk_git 으로 해보면 다음과 같이 나온다.
+
+PTY allocation request failed on channel 0
+Hi ictk! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
