@@ -1,0 +1,71 @@
+apache2 mod_wsgi 를 사용하려고 하면...
+기본적은 mod_wsgi 가 3.5 기반으로 사용되고 있다.
+하지만 내가 주로 사용하는 것은 python3.6 이상이다.
+3.5 대신 3.6 으로 설정 하는 방법에 대해 설명 하고자 한다.
+
+1. 먼저 기본 mod_wsgi 를 설치 하자.(아파치는 깔려 있다고 보고 하자)
+sudo apt-get -y install libapache2-mod-wsgi-py3
+(바로 설치가 안되면 sudo apt-get -y install libapache2-mod-wsgi 를 먼저 설치 하자.)
+
+
+2. 우선 해당 버전이 무었인지 알기 위해 가장 간단한 방법은 아파치로 python을 올렸을때 그 버전 이름을 보는 거다.
+sudo vi /etc/apache2/conf-available/wsgi.conf
+
+-------------------------------------------------------
+/test_wsgi /var/www/html/test_wsgi.py
+-------------------------------------------------------
+-> 서버주소/test_wsgi 로 들어오면 /var/www/html/test_wsgi.py 가 실행 되게끔 한다.
+
+
+sudu vi /var/www/html/test_wsgi.py
+
+-----------------------------------------
+import sys
+
+def application(environ,start_response):
+
+    status = '200 OK'
+    outstr =str(sys.version_info)#-> 현재 파이썬 버전을 웹에 출력 한다.
+    html = '''<html>\n
+           <body>\n
+           <div style="width: 100%; font-size: 40px; font-weight: bold; text-align: center;">\n
+           mod_wsgi Test Page {0} \n
+           </div>\n
+           </body>\n
+           </html>\n'''.format(outstr)
+
+    response_header = [('Content-type','text/html')]
+    start_response(status,response_header)
+    return [html.encode()]#->python 2 로 되어 있는 경우 에러가 날꺼다.
+
+-------------------------------------------------------------~
+~
+sudo service apache2 restart
+
+홈페이지 다시 시작 하고 웹에 접속 하면 ~
+-->
+mod_wsgi Test Page sys.version_info(major=3, minor=5, micro=* releaselevel='final', serial=0)
+
+이렇게 찍힐 것이다.
+
+3. python3.6 에 mod_wsgi 럴 설치 하자.
+sudo python3.6 -m pip install mod_wsgi
+설치를 하면 위치에 so 파일이 생성 된다.
+/usr/local/lib/python3.6/site-packages/mod_wsgi/server/mod_wsgi-py36.cpython-36m-x86_64-linux-gnu.so
+
+4.이제 apache2 에서 mod_wsgi 가 로드 되는 곳을 확인하자.
+/etc/apache2/mods-available/wsgi.load
+-->LoadModule wsgi_module /usr/lib/apache2/modules/mod_wsgi.so
+
+ls -al /usr/lib/apache2/modules/mod_wsgi.so
+/usr/lib/apache2/modules/mod_wsgi.so -> mod_wsgi3.5.so
+
+ 즉 심볼릭 링크를  /usr/local/lib/python3.6/site-packages/mod_wsgi/server/mod_wsgi-py36.cpython-36m-x86_64-linux-gnu.so
+로 걸어주고
+
+아파치 재시작=>웹 접속
+다음과 같이 나왔다.
+mod_wsgi Test Page sys.version_info(major=3, minor=6, micro=6, releaselevel='final', serial=0)
+
+
+
