@@ -1,0 +1,4 @@
+
+SyntaxError: Non-ASCII Character 관련된 에러라고 부릅니다. 
+해당 파일에 맨위에 다음을 적는다.
+# -*- coding: utf-8 -*- 
